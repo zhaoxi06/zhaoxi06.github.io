@@ -1,0 +1,629 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="最近在用ant-design-vue-pro，记录下遇到的问题及解决方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ant design vue pro的使用">
+<meta property="og:url" content="http://yoursite.com/2020/11/28/ant-design-vue-pro的使用/index.html">
+<meta property="og:site_name" content="朝夕的博客">
+<meta property="og:description" content="最近在用ant-design-vue-pro，记录下遇到的问题及解决方案">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/changeLocaleLang.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/changeBootstrapLang.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/addMultiTab.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/addVariable.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/changeRouteView.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/setKeepAlive.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/changeResponse.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/changePermissionSource.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/rolePermissions.png">
+<meta property="og:updated_time" content="2020-11-28T07:57:56.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ant design vue pro的使用">
+<meta name="twitter:description" content="最近在用ant-design-vue-pro，记录下遇到的问题及解决方案">
+<meta name="twitter:image" content="http://yoursite.com/images/vue/ant-design-vue-pro/changeLocaleLang.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/11/28/ant-design-vue-pro的使用/"/>
+
+
+  <title> ant design vue pro的使用 | 朝夕的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">朝夕的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一万年太久，只争朝夕。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ant design vue pro的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-11-28T14:40:55+08:00" content="2020-11-28">
+              2020-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在用ant-design-vue-pro，记录下遇到的问题及解决方案</p>
+<a id="more"></a>
+<h3 id="1、如何修改默认的语言？"><a href="#1、如何修改默认的语言？" class="headerlink" title="1、如何修改默认的语言？"></a>1、如何修改默认的语言？</h3><p>除了修改<a href="https://github.com/vueComponent/ant-design-vue-pro/blob/master/src/locales/index.js" target="_blank" rel="external">官网</a>介绍到的<code>src/locales/index.js</code>，<br><img src="/images/vue/ant-design-vue-pro/changeLocaleLang.png"></p>
+<p>还需要修改<code>src/core/bootstrap.js</code>的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">store.dispatch(&apos;setLang&apos;, storage.get(APP_LANGUAGE, &apos;zh-CN&apos;))</div></pre></td></tr></table></figure></p>
+<p><img src="/images/vue/ant-design-vue-pro/changeBootstrapLang.png"></p>
+<h3 id="2、如何支持多页签模式？"><a href="#2、如何支持多页签模式？" class="headerlink" title="2、如何支持多页签模式？"></a>2、如何支持多页签模式？</h3><p><a href="https://blog.csdn.net/sunshu123456/article/details/107773010" target="_blank" rel="external">ant design vue pro 支持多页签模式</a><br>修改 src/layouts/BasicLayout.vue 文件，添加multitab<br><img src="/images/vue/ant-design-vue-pro/addMultiTab.png"><br>添加属性<br><img src="/images/vue/ant-design-vue-pro/addVariable.png"></p>
+<h3 id="3、如何实现返回原来的页签不刷新？"><a href="#3、如何实现返回原来的页签不刷新？" class="headerlink" title="3、如何实现返回原来的页签不刷新？"></a>3、如何实现返回原来的页签不刷新？</h3><p>在<code>src/config/router.confit.js</code>中引入<code>src/layouts/RouteView.vue</code>，并且注释掉const定义的RouteView。<br>路由通过meta中的keepAlive属性来定义是否刷新。<br>修改<code>src/layouts/RouteView.vue</code>中的返回值<br><img src="/images/vue/ant-design-vue-pro/changeRouteView.png"><br>修改返回值<br><img src="/images/vue/ant-design-vue-pro/setKeepAlive.png"></p>
+<h3 id="4、如何隐藏面包屑导航？"><a href="#4、如何隐藏面包屑导航？" class="headerlink" title="4、如何隐藏面包屑导航？"></a>4、如何隐藏面包屑导航？</h3><p>路由对应的页面不要使用<code>&lt;page-header-wrapper&gt;</code>包裹内容</p>
+<h3 id="5、后端返回的数据结构与默认的不一致如何修改？"><a href="#5、后端返回的数据结构与默认的不一致如何修改？" class="headerlink" title="5、后端返回的数据结构与默认的不一致如何修改？"></a>5、后端返回的数据结构与默认的不一致如何修改？</h3><p>修改src/utils/request.js文件<br><img src="/images/vue/ant-design-vue-pro/changeResponse.png"></p>
+<h3 id="6、如何动态渲染菜单？"><a href="#6、如何动态渲染菜单？" class="headerlink" title="6、如何动态渲染菜单？"></a>6、如何动态渲染菜单？</h3><p>修改src/store/index.js中的permission的来源<br><img src="/images/vue/ant-design-vue-pro/changePermissionSource.png"></p>
+<h3 id="7、Antd-is-not-defined-解决办法"><a href="#7、Antd-is-not-defined-解决办法" class="headerlink" title="7、Antd is not defined 解决办法"></a>7、Antd is not defined 解决办法</h3><p>作者配置了按需导入，所以vue组件完整导入配置的时候一直出现这个报错。<a href="https://blog.csdn.net/qq_39990827/article/details/90700077" target="_blank" rel="external">Antd is not defined 解决办法</a>。评论区的网友给出了一个简单的解决方法：<br>在main.js中这样引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import Vue from &apos;vue&apos;</div><div class="line"> </div><div class="line">import Antd from &apos;ant-design-vue/es&apos;</div><div class="line"> </div><div class="line">Vue.use(Antd)</div></pre></td></tr></table></figure></p>
+<h3 id="8、ant-design-vue-pro指令权限是如何生效的？"><a href="#8、ant-design-vue-pro指令权限是如何生效的？" class="headerlink" title="8、ant design vue pro指令权限是如何生效的？"></a>8、ant design vue pro指令权限是如何生效的？</h3><p><a href="https://pro.antdv.com/docs/authority-management" target="_blank" rel="external">官方文档</a>用户登录后，调用获取用户信息的接口，用户信息的role属性中有个permissions属性，它的值是数组。数组中的每一个元素是一个权限对象，如下图表示，在dashboard这个权限下，有新增(add)、查询(query)、详情(get)、修改(update)、删除(delete)这五个权限按钮，当前用户拥有delete删除权限。<br><img src="/images/vue/ant-design-vue-pro/rolePermissions.png"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/26/hexo博客迁移到另一台电脑/" rel="next" title="hexo博客迁移到另一台电脑">
+                <i class="fa fa-chevron-left"></i> hexo博客迁移到另一台电脑
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/28/父组件将子组件作为弹窗调用只执行一次created的问题/" rel="prev" title="父组件将子组件作为弹窗调用只执行一次created的问题">
+                父组件将子组件作为弹窗调用只执行一次created的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/lswl.jpg"
+               alt="lxqin" />
+          <p class="site-author-name" itemprop="name">lxqin</p>
+          <p class="site-description motion-element" itemprop="description">记录我的生活~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、如何修改默认的语言？"><span class="nav-number">1.</span> <span class="nav-text">1、如何修改默认的语言？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、如何支持多页签模式？"><span class="nav-number">2.</span> <span class="nav-text">2、如何支持多页签模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、如何实现返回原来的页签不刷新？"><span class="nav-number">3.</span> <span class="nav-text">3、如何实现返回原来的页签不刷新？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、如何隐藏面包屑导航？"><span class="nav-number">4.</span> <span class="nav-text">4、如何隐藏面包屑导航？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、后端返回的数据结构与默认的不一致如何修改？"><span class="nav-number">5.</span> <span class="nav-text">5、后端返回的数据结构与默认的不一致如何修改？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、如何动态渲染菜单？"><span class="nav-number">6.</span> <span class="nav-text">6、如何动态渲染菜单？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、Antd-is-not-defined-解决办法"><span class="nav-number">7.</span> <span class="nav-text">7、Antd is not defined 解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、ant-design-vue-pro指令权限是如何生效的？"><span class="nav-number">8.</span> <span class="nav-text">8、ant design vue pro指令权限是如何生效的？</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lxqin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

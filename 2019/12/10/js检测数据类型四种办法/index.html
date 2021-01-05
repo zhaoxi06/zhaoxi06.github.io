@@ -1,0 +1,618 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="转载自：js检测数据类型四种办法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js检测数据类型四种办法">
+<meta property="og:url" content="http://yoursite.com/2019/12/10/js检测数据类型四种办法/index.html">
+<meta property="og:site_name" content="朝夕的博客">
+<meta property="og:description" content="转载自：js检测数据类型四种办法">
+<meta property="og:updated_time" content="2019-12-12T11:40:20.558Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js检测数据类型四种办法">
+<meta name="twitter:description" content="转载自：js检测数据类型四种办法">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/10/js检测数据类型四种办法/"/>
+
+
+  <title> js检测数据类型四种办法 | 朝夕的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">朝夕的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一万年太久，只争朝夕。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js检测数据类型四种办法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-10T16:38:00+08:00" content="2019-12-10">
+              2019-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转载自：<a href="https://www.cnblogs.com/zt123123/p/7623409.html" target="_blank" rel="external">js检测数据类型四种办法</a><br><a id="more"></a></p>
+<h2 id="1、typeof"><a href="#1、typeof" class="headerlink" title="1、typeof"></a>1、typeof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">console.log(typeof &quot;&quot;);  //string</div><div class="line">console.log(typeof 1);    //number</div><div class="line">console.log(typeof true);   //boolean</div><div class="line">console.log(typeof null);   //object</div><div class="line">console.log(typeof undefined);  //undefined</div><div class="line">console.log(typeof []);     //object</div><div class="line">console.log(typeof function()&#123;&#125;);   //function</div><div class="line">console.log(typeof &#123;&#125;);     //object</div></pre></td></tr></table></figure>
+<p>可以看到，typeof对于基本数据类型判断是没有问题的，但是遇到引用数据类型（如：Array）是不起作用的。</p>
+<h2 id="2、instanceof"><a href="#2、instanceof" class="headerlink" title="2、instanceof"></a>2、instanceof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">console.log(&quot;1&quot; instanceof String);     //false</div><div class="line">console.log(1 instanceof Number);       //false</div><div class="line">console.log(true instanceof Boolean);   //false</div><div class="line">console.log([] instanceof Array);       //true</div><div class="line">console.log(function()&#123;&#125; instanceof Function);  //true</div><div class="line">console.log(&#123;&#125; instanceof Object);  //true</div></pre></td></tr></table></figure>
+<p>可以看到前三个都是以对象字面量创建的基本数据类型，但是却不是所属类的实例，这个就有点怪了。后面三个是引用数据类型，可以得到正确的结果。如果我们通过new关键字去创建基本数据类型，你会发现，这时就会输出true,如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">new Number(1) instanceof Number;    //true</div><div class="line">new String(&apos;111&apos;) instanceof String;    //true</div><div class="line">new Boolean(true) instanceof Boolean;   //true</div></pre></td></tr></table></figure></p>
+<h2 id="3、constructor"><a href="#3、constructor" class="headerlink" title="3、constructor"></a>3、constructor</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">console.log((&quot;1&quot;).constructor === String);  //true</div><div class="line">console.log((1).constructor === Number);    //true</div><div class="line">console.log((true).constructor === Boolean);    //true</div><div class="line">//console.log((null).constructor === Null);</div><div class="line">//console.log((undefined).constructor === Undefined);</div><div class="line">console.log(([]).constructor === Array);    //true</div><div class="line">console.log((function() &#123;&#125;).constructor === Function);  //true</div><div class="line">console.log((&#123;&#125;).constructor === Object);   //true</div></pre></td></tr></table></figure>
+<p>（这里依然抛开null和undefined）乍一看，constructor似乎完全可以应对基本数据类型和引用数据类型，都能检测出数据类型，事实上并不是如此，来看看为什么：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function Fn()&#123;&#125;;</div><div class="line"></div><div class="line">Fn.prototype=new Array();</div><div class="line"></div><div class="line">var f=new Fn();</div><div class="line"></div><div class="line">console.log(f.constructor===Fn);    //false</div><div class="line">console.log(f.constructor===Array); //true</div></pre></td></tr></table></figure></p>
+<p>我声明了一个构造函数，并且把他的原型指向了Array的原型，所以这种情况下，constructor也显得力不从心了。</p>
+<p>看到这里，是不是觉得绝望了。没关系，终极解决办法就是第四种办法，看过jQuery源码的人都知道，jQuery实际上就是采用这个方法进行数据类型检测的。</p>
+<h2 id="4、Object-prototype-toString-call"><a href="#4、Object-prototype-toString-call" class="headerlink" title="4、Object.prototype.toString.call()"></a>4、Object.prototype.toString.call()</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var a = Object.prototype.toString;</div><div class="line"></div><div class="line">console.log(a.call(&quot;aaa&quot;));         //[object String]</div><div class="line">console.log(a.call(1));             //[object Number]</div><div class="line">console.log(a.call(true));          //[object Boolean]</div><div class="line">console.log(a.call(null));          //[object Null]</div><div class="line">console.log(a.call(undefined));     //[object Undefined]</div><div class="line">console.log(a.call([]));            //[object Array]</div><div class="line">console.log(a.call(function() &#123;&#125;)); //[object Function]</div><div class="line">console.log(a.call(&#123;&#125;));            //[object Object]</div></pre></td></tr></table></figure>
+<p>可以看到，所有的数据类型，这个办法都可以判断出来。那就有人质疑了，假如我把他的原型改动一下呢？如你所愿，我们看一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function Fn()&#123;&#125;;</div><div class="line">Fn.prototype = new Array();</div><div class="line">Object.prototype.toString.call(Fn);     //&quot;[object Function]&quot;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/27/我为什么喜欢华晨宇/" rel="next" title="我为什么喜欢华晨宇">
+                <i class="fa fa-chevron-left"></i> 我为什么喜欢华晨宇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/11/隐式类型转换/" rel="prev" title="隐式类型转换">
+                隐式类型转换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/lswl.jpg"
+               alt="lxqin" />
+          <p class="site-author-name" itemprop="name">lxqin</p>
+          <p class="site-description motion-element" itemprop="description">记录我的生活~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、typeof"><span class="nav-number">1.</span> <span class="nav-text">1、typeof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、instanceof"><span class="nav-number">2.</span> <span class="nav-text">2、instanceof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、constructor"><span class="nav-number">3.</span> <span class="nav-text">3、constructor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、Object-prototype-toString-call"><span class="nav-number">4.</span> <span class="nav-text">4、Object.prototype.toString.call()</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lxqin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

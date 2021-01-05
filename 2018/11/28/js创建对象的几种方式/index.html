@@ -1,0 +1,742 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="js创建对象的几种方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js创建对象的几种方式">
+<meta property="og:url" content="http://yoursite.com/2018/11/28/js创建对象的几种方式/index.html">
+<meta property="og:site_name" content="朝夕的博客">
+<meta property="og:description" content="js创建对象的几种方式">
+<meta property="og:updated_time" content="2018-11-29T12:07:51.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js创建对象的几种方式">
+<meta name="twitter:description" content="js创建对象的几种方式">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/28/js创建对象的几种方式/"/>
+
+
+  <title> js创建对象的几种方式 | 朝夕的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">朝夕的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一万年太久，只争朝夕。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js创建对象的几种方式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-11-28T14:40:10+08:00" content="2018-11-28">
+              2018-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>js创建对象的几种方式<br><a id="more"></a></p>
+<h3 id="1、Object构造函数"><a href="#1、Object构造函数" class="headerlink" title="1、Object构造函数"></a>1、Object构造函数</h3><pre><code>
+    var person = new Object();
+    person.name = "Nicholas";
+    person.name = 29;
+</code></pre>
+
+<h3 id="2、对象字面量方法（实际上不会调用Object构造函数）"><a href="#2、对象字面量方法（实际上不会调用Object构造函数）" class="headerlink" title="2、对象字面量方法（实际上不会调用Object构造函数）"></a>2、对象字面量方法（实际上不会调用Object构造函数）</h3><pre><code>
+    var person = {
+         name : "Nicholas",
+         age : 29
+         //属性名可用字符串表示，也可以不用
+         //"name" : "Nicholas"
+     }
+     //也可以留空花括号
+     var person = {};    //与 new Object()相同
+     person.name = "Nicholas";
+     person.age = 29;
+</code></pre>
+
+<p>构造函数或对象字面量创建很多对象，会产生大量的重复代码。</p>
+<h3 id="3、工厂模式"><a href="#3、工厂模式" class="headerlink" title="3、工厂模式"></a>3、工厂模式</h3><pre><code>
+    function createPerson(name, age, job){
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.job = job;
+        o.sayName = function(){
+            alert(this.name);
+        }
+        return o;
+    }
+    var person1 = createPerson("Nicholas",29,"Software Enginerr");
+    var person2 = createPerson("Greg", 27, "Doctor");
+</code></pre>
+
+<p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题（即怎样知道一个对象的类型）。</p>
+<h3 id="4、构造函数模式"><a href="#4、构造函数模式" class="headerlink" title="4、构造函数模式"></a>4、构造函数模式</h3><pre><code>
+    function Person(name, age, job){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.sayName = function(){
+            alert(this.name);
+        }
+    }
+    var person1 = new Person(“Nicholas”, 29, “Software Engineer”);
+    var person2 = new Person(“Greg”, 27, “Doctor”);
+</code></pre>
+
+<p> 使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍。函数是对象，因此每定义一个函数，也就是实例化了一个对象。以这种方式创建函数，会导致不同的作用域链和标识符解析。没有必要创建两个完成同样任务的Function实例。</p>
+<h3 id="5、原型模式"><a href="#5、原型模式" class="headerlink" title="5、原型模式"></a>5、原型模式</h3><pre><code>
+    function Person(){}
+    Person.prototype = {
+        constroutor: Person,
+        name: “Nicholas”,
+        age: 29,
+        job: “Software Engineer”,
+        sayName: function(){
+            alert(this.name);
+        }
+    }
+    var person1 = new Person();
+    person1.sayName();      //"Nicholas"
+    var person2 = new Person();
+    person2.sayName();      //"NIcholas"
+    alert(person1.sayName == person2.sayName);      //true
+</code></pre>
+
+<p>原型模式的最大问题在于，原型中所有属性是被很多实例共享的，这种共享对于函数非常合适。对于那些包含基本值的属性也还行。然而，对于包含引用类型值的属性来说，问题就比较突出了。</p>
+<h3 id="6、组合使用构造函数和原型模式"><a href="#6、组合使用构造函数和原型模式" class="headerlink" title="6、组合使用构造函数和原型模式"></a>6、组合使用构造函数和原型模式</h3><pre><code>
+    function Person(name, age, job){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.friends = ["Shelly", "Court"];
+    }
+    Person.prototype = {
+        constructor: Person,
+        sayName: function(){
+            alert(this.name);
+        }
+    }
+</code></pre>
+
+<h3 id="7、动态原型模式"><a href="#7、动态原型模式" class="headerlink" title="7、动态原型模式"></a>7、动态原型模式</h3><pre><code>
+    function Person(name, age, job){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        //在sayName()不存在的情况下才会执行。
+        //即这段代码只会在初次调用构造函数时才会执行。
+        if(typeof this.sayName != "function"){
+            Person.prototype.sayName = function(){
+                alert(this.name);
+            }
+        }
+    }
+</code></pre>
+
+<p>把所有信息都封装在了构造函数中，而通过在构造函数中初始化原型（仅在必要的情况下），又保持了同时使用构造函数和原型的优点。</p>
+<h3 id="8、寄生构造函数模式"><a href="#8、寄生构造函数模式" class="headerlink" title="8、寄生构造函数模式"></a>8、寄生构造函数模式</h3><p>这种模式的思想是创建一个函数，该函数的作用仅仅是封装创建对象的代码，然后再返回新创建的对象。</p>
+<pre><code>
+    function Person(name, age, job){
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.job = job;
+        o.sayName = function(){
+            alert(this.name);
+        }
+        return o;
+    }
+    var friends = new Person("Nicholas", 29, "Software Engineer");
+    friends.sayName();  //Nicholas
+</code></pre>
+
+<h3 id="9、稳妥构造函数模式"><a href="#9、稳妥构造函数模式" class="headerlink" title="9、稳妥构造函数模式"></a>9、稳妥构造函数模式</h3><p>稳妥构造函数遵循与寄生构造函数类似的模式，但有两点不同：一是新创建对象的实例方法不引用<code>this</code>；二是不使用<code>new</code>操作符调用构造函数。</p>
+<pre><code>
+    function Person(name, age, job){
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.job = job;
+        o.sayName = function(){
+            alert(name);
+        }
+        return o;
+    }
+    var friends = Person("Nicholas", 29, "Software Engineer");
+    friends.sayName();  //Nicholas
+</code></pre>
+
+<p>以这种模式创建的对象，除了使用sayName()之外，没有其他办法访问name的值。</p>
+<p><a href="https://github.com/zhaoxi06/Professional-JavaScript-for-Web-Developers/blob/master/%E5%85%AD%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/note.md" target="_blank" rel="external">详细介绍请看 6.2创建对象</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/27/理解构造函数和原型对象/" rel="next" title="理解构造函数和原型对象">
+                <i class="fa fa-chevron-left"></i> 理解构造函数和原型对象
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/JS中实现继承的几种方式/" rel="prev" title="JS中实现继承的几种方式">
+                JS中实现继承的几种方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/lswl.jpg"
+               alt="lxqin" />
+          <p class="site-author-name" itemprop="name">lxqin</p>
+          <p class="site-description motion-element" itemprop="description">记录我的生活~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Object构造函数"><span class="nav-number">1.</span> <span class="nav-text">1、Object构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、对象字面量方法（实际上不会调用Object构造函数）"><span class="nav-number">2.</span> <span class="nav-text">2、对象字面量方法（实际上不会调用Object构造函数）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、工厂模式"><span class="nav-number">3.</span> <span class="nav-text">3、工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、构造函数模式"><span class="nav-number">4.</span> <span class="nav-text">4、构造函数模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、原型模式"><span class="nav-number">5.</span> <span class="nav-text">5、原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、组合使用构造函数和原型模式"><span class="nav-number">6.</span> <span class="nav-text">6、组合使用构造函数和原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、动态原型模式"><span class="nav-number">7.</span> <span class="nav-text">7、动态原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、寄生构造函数模式"><span class="nav-number">8.</span> <span class="nav-text">8、寄生构造函数模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、稳妥构造函数模式"><span class="nav-number">9.</span> <span class="nav-text">9、稳妥构造函数模式</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lxqin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

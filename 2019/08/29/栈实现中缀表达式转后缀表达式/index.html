@@ -1,0 +1,612 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="最近在看《数据结构与算法的JavaScript描述》这本书，第四章栈的练习中有这么一题：“设计并实现一个JavaScript函数，该函数可以将中缀表达式转换为后缀表达式，然后利用栈对该表达式求值。”于是就有了这篇博客，记录这个算法的实现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="栈实现中缀表达式转后缀表达式">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/栈实现中缀表达式转后缀表达式/index.html">
+<meta property="og:site_name" content="朝夕的博客">
+<meta property="og:description" content="最近在看《数据结构与算法的JavaScript描述》这本书，第四章栈的练习中有这么一题：“设计并实现一个JavaScript函数，该函数可以将中缀表达式转换为后缀表达式，然后利用栈对该表达式求值。”于是就有了这篇博客，记录这个算法的实现。">
+<meta property="og:updated_time" content="2019-08-29T14:49:14.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="栈实现中缀表达式转后缀表达式">
+<meta name="twitter:description" content="最近在看《数据结构与算法的JavaScript描述》这本书，第四章栈的练习中有这么一题：“设计并实现一个JavaScript函数，该函数可以将中缀表达式转换为后缀表达式，然后利用栈对该表达式求值。”于是就有了这篇博客，记录这个算法的实现。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/29/栈实现中缀表达式转后缀表达式/"/>
+
+
+  <title> 栈实现中缀表达式转后缀表达式 | 朝夕的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">朝夕的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一万年太久，只争朝夕。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                栈实现中缀表达式转后缀表达式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-08-29T19:35:24+08:00" content="2019-08-29">
+              2019-08-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在看《数据结构与算法的JavaScript描述》这本书，第四章栈的练习中有这么一题：“设计并实现一个JavaScript函数，该函数可以将中缀表达式转换为后缀表达式，然后利用栈对该表达式求值。”于是就有了这篇博客，记录这个算法的实现。</p>
+<a id="more"></a>
+<h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><p>参考<a href="https://blog.csdn.net/coder_dacyuan/article/details/79941743" target="_blank" rel="external">详解如何将中缀表达式转化为后缀表达式</a><br>中缀表达式转后缀表达式遵循的规则：<br>1、任何中缀表达式都由运算数、运算符、括号这三部分组成。<br>2、从中缀表达式的左边开始扫描，遇到运算数时，直接将其输出，不压入堆栈。<br>3、若遇到左括号，则将其压入堆栈。<br>4、若遇到右括号，表示括号内的中缀表达式已经扫描完毕，这时需要将栈顶的运算符依次弹出并输出，直至遇到左括号，左括号弹出不输出。<br>5、若遇到的是运算符：如果该运算符的优先级大于栈顶运算符的优先级时，将其压入堆栈，否则，将栈顶运算符弹出并输出，接着和新的栈顶运算符比较，若大于，则将其压栈，若小于，继续将栈顶运算符弹出并输出…..一直敌对下去，直至当前运算符大于栈顶运算符位置。<br>6、最后一步，若扫描到中缀表达式的末尾（即扫描结束），若堆栈中还有存留的运算符依次弹出并输出即可。</p>
+<p>知道了上面这些规则，下面就可以开始写代码了。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div></pre></td><td class="code"><pre><div class="line">function Stack()&#123;</div><div class="line">    this.dataStore = [];</div><div class="line">    this.push = push;</div><div class="line">    this.pop = pop;</div><div class="line">    this.length = length;</div><div class="line">    this.peek = peek;</div><div class="line">    this.isEmpty = isEmpty;</div><div class="line">    this.toString = toString;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function push(ele)&#123;</div><div class="line">    this.dataStore.push(ele);</div><div class="line">&#125;</div><div class="line"></div><div class="line">function pop()&#123;</div><div class="line">    return this.dataStore.pop();</div><div class="line">&#125;</div><div class="line"></div><div class="line">function peek()&#123;</div><div class="line">    return this.dataStore[this.dataStore.length-1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">function isEmpty()&#123;</div><div class="line">    return this.dataStore.length === 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function length()&#123;</div><div class="line">    return this.dataStore.length;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function toString()&#123;</div><div class="line">    let concat = &apos;&apos;;</div><div class="line">    for(let i=0;i&lt;this.dataStore.length;i++)&#123;</div><div class="line">        concat += this.dataStore[i];</div><div class="line">    &#125;</div><div class="line">    return concat;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function weight(str)&#123;</div><div class="line">    switch(str)&#123;</div><div class="line">        case &apos;+&apos;:</div><div class="line">        case &apos;-&apos;:</div><div class="line">            return 1;</div><div class="line">        case &apos;*&apos;:</div><div class="line">        case &apos;/&apos;:</div><div class="line">            return 2;</div><div class="line">        default:</div><div class="line">            return 0;       </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function expressionChange(expression)&#123;</div><div class="line">    let now = &apos;&apos;;</div><div class="line">    let newExpress = [];</div><div class="line">    let operator = new Stack();</div><div class="line">    for( let i=0; i&lt;expression.length;i++)&#123;</div><div class="line">        now = expression[i];</div><div class="line">        if(/\d/.test(now))&#123;</div><div class="line">            let str = &apos;&apos;;</div><div class="line">            while(/\d/.test(expression[i]))&#123;</div><div class="line">                str += expression[i];</div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">            newExpress.push(str);</div><div class="line">            i--;</div><div class="line">        &#125;else if(/[+\-*\/]/.test(now))&#123;</div><div class="line">            (&#123;operator, newExpress&#125; = compare(now, operator, newExpress));</div><div class="line">        &#125;else if(now === &apos;(&apos;)&#123;</div><div class="line">            operator.push(now);</div><div class="line">        &#125;else if(now === &apos;)&apos;)&#123;</div><div class="line">            (&#123;operator, newExpress&#125; = popOperator(operator, newExpress));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    while(!operator.isEmpty())&#123;</div><div class="line">        newExpress.push(operator.pop());</div><div class="line">    &#125;</div><div class="line">    return newExpress;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function newIsDigit(now, newExpress)&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">function popOperator(operator, newExpress)&#123;</div><div class="line">    if(operator.peek() === &apos;(&apos;)&#123;</div><div class="line">        operator.pop();</div><div class="line">    &#125;else&#123;</div><div class="line">        newExpress.push(operator.pop());</div><div class="line">        (&#123;operator, newExpress&#125; = popOperator(operator, newExpress));</div><div class="line">    &#125;</div><div class="line">    return &#123;newExpress: newExpress, operator: operator&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function compare(now, operator, newExpress)&#123;</div><div class="line">    if(operator.isEmpty())&#123;</div><div class="line">        operator.push(now);</div><div class="line">    &#125;else&#123;</div><div class="line">        let nowWeight = weight(now);</div><div class="line">        let topWeight = weight(operator.peek());</div><div class="line">        if(nowWeight &gt; topWeight)&#123;</div><div class="line">            operator.push(now);</div><div class="line">        &#125;else&#123;</div><div class="line">            newExpress.push(operator.pop());</div><div class="line">            (&#123;operator, newExpress&#125; = compare(now, operator, newExpress));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return &#123;newExpress: newExpress, operator: operator&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function calculate(express)&#123;</div><div class="line">    if(express.length&gt;1)&#123;</div><div class="line">        for(let i=0; i&lt;express.length; i++)&#123;</div><div class="line">            if(/[*+\-\/]/.test(express[i]))&#123;</div><div class="line">                let first = express[i-2];</div><div class="line">                let second = express[i-1];</div><div class="line">                express.splice(i-2, 3, operator(first, second, express[i]));</div><div class="line">                return calculate(express);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;else&#123;</div><div class="line">        return express[0];</div><div class="line">    &#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line">function operator(first, second, operator)&#123;</div><div class="line">    switch(operator)&#123;</div><div class="line">        case &apos;*&apos;:</div><div class="line">            return Number(first) * Number(second);</div><div class="line">        case &apos;/&apos;:</div><div class="line">            return Number(first) / Number(second);</div><div class="line">        case &apos;+&apos;:</div><div class="line">            return Number(first) + Number(second);</div><div class="line">        case &apos;-&apos;:</div><div class="line">            return Number(first) - Number(second);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var express = &apos;20*(9+6/3-5)+4&apos;;</div><div class="line">var suffixExpress = expressionChange(express)</div><div class="line">console.log(suffixExpress.join(&apos; &apos;));</div><div class="line">var result = calculate(suffixExpress);</div><div class="line">console.log(result);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/23/for...in  for...of/" rel="next" title="for...in for...of">
+                <i class="fa fa-chevron-left"></i> for...in for...of
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/30/谁能活下来——链表实践/" rel="prev" title="谁能活下来——链表实践">
+                谁能活下来——链表实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/lswl.jpg"
+               alt="lxqin" />
+          <p class="site-author-name" itemprop="name">lxqin</p>
+          <p class="site-description motion-element" itemprop="description">记录我的生活~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法分析"><span class="nav-number">1.</span> <span class="nav-text">算法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lxqin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

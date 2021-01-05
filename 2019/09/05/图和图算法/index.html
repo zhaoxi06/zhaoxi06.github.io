@@ -1,0 +1,613 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="深度优先搜索、广度优先搜索与最短路径">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图和图算法">
+<meta property="og:url" content="http://yoursite.com/2019/09/05/图和图算法/index.html">
+<meta property="og:site_name" content="朝夕的博客">
+<meta property="og:description" content="深度优先搜索、广度优先搜索与最短路径">
+<meta property="og:updated_time" content="2019-09-07T03:31:40.849Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图和图算法">
+<meta name="twitter:description" content="深度优先搜索、广度优先搜索与最短路径">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/05/图和图算法/"/>
+
+
+  <title> 图和图算法 | 朝夕的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">朝夕的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一万年太久，只争朝夕。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                图和图算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-09-05T16:47:38+08:00" content="2019-09-05">
+              2019-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>深度优先搜索、广度优先搜索与最短路径</p>
+<a id="more"></a>
+<h3 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h3><p>1、图的常用存储方式有两种，邻接表和邻接矩阵。邻接表将边存储为由顶点的相邻顶点列表构成的数组，并以此顶点作为索引。邻接矩阵是一个二维数组，其中的元素表示两个顶点之间是否有一条边。<br>2、深度优先搜索：从一条路径的起始顶点开始追溯，直到到达最后一个顶点，然后回溯，继续追溯下一条路径，直到到达最后的顶点，如此往复，直到没有路径位置。<br>3、广度优先搜索：从第一个顶点开始，尝试访问尽可能靠近它的顶点。这种搜索在图上逐层移动，首先检查最靠近第一个顶点的层，再逐渐向下移动到离起始顶点最远的层。</p>
+<h3 id="二、算法分析"><a href="#二、算法分析" class="headerlink" title="二、算法分析"></a>二、算法分析</h3><p>1、深度优先搜索<br>访问一个没有访问过的顶点，将它标记为已访问，再递归地去访问在初始顶点的邻接表中其他没有访问过的顶点。</p>
+<p>2、广度优先搜索<br>从第一个顶点开始，查找与这个顶点相邻的未访问节点，将它标记为已访问，并加入队列中；<br>第一个元素出队列，并查找这个顶点相邻的未访问节点，将它标记为已访问，并加入队列中</p>
+<p>3、最短路径<br>广度优先搜索时，记录从一个顶点到另一个相连顶点的最短路径，<code>this.edgeTo[this.adj[v][w]] = v;</code>。<br>查找初始节点到最终节点的最短路径时，通过最终节点找到能访问这个最终节点的上一个节点，通过上一个节点继续找能访问这个节点的上上个节点，如此往复，直到上一个节点是初始节点为止。</p>
+<h3 id="三、算法实现"><a href="#三、算法实现" class="headerlink" title="三、算法实现"></a>三、算法实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line">function Graph(v)&#123;</div><div class="line">    this.vertices = v;  //顶点的个数</div><div class="line">    this.edges = 0;     //边的数量</div><div class="line">    this.adj = [];      //邻接表</div><div class="line">    for(var i=0; i&lt;this.vertices;++i)&#123;</div><div class="line">        this.adj[i] = [];</div><div class="line">    &#125;</div><div class="line">    this.addEdge = addEdge;</div><div class="line">    this.showGraph = showGraph;</div><div class="line">    this.dfs = dfs;</div><div class="line">    this.bfs = bfs;</div><div class="line">    this.marked = [];</div><div class="line">    for(var i=0; i&lt;this.vertices; ++i)&#123;</div><div class="line">        this.marked[i] = false;</div><div class="line">    &#125;</div><div class="line">    this.edgeTo = [];</div><div class="line">    this.pathTo = pathTo;</div><div class="line">    this.hasPathTo = hasPathTo;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//添加一条边</div><div class="line">function addEdge(v, w)&#123;</div><div class="line">    this.adj[v].push(w);</div><div class="line">    this.adj[w].push(v);</div><div class="line">    this.edges++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//打印图</div><div class="line">function showGraph()&#123;</div><div class="line">    for(var i=0; i&lt;this.vertices; i++)&#123;</div><div class="line">        console.log(i + &quot; -&gt; &quot;);</div><div class="line">        for(var j=0; j&lt;this.vertices;j++)&#123;</div><div class="line">            if(this.adj[i][j] != undefined)&#123;</div><div class="line">                console.log(this.adj[i][j] + &apos; &apos;);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//深度优先搜索</div><div class="line">function dfs(v)&#123;</div><div class="line">    this.marked[v] = true;</div><div class="line">    if(this.adj[v] !== undefined)&#123;</div><div class="line">        console.log(&quot;Visited vertex: &quot; + v);</div><div class="line">    &#125;</div><div class="line">    for(var w in this.adj[v])&#123;</div><div class="line">        if(!this.marked[this.adj[v][w]])&#123;</div><div class="line">            this.dfs(this.adj[v][w]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//广度优先搜索</div><div class="line">function bfs(s)&#123;</div><div class="line">    var queue = [];</div><div class="line">    this.marked[s] = true;</div><div class="line">    queue.push(s);</div><div class="line">    while(queue.length &gt; 0)&#123;</div><div class="line">        var v = queue.shift();</div><div class="line">        if(v !== undefined)&#123;</div><div class="line">            console.log(&quot;Visited vertex: &quot; + v);</div><div class="line">        &#125;</div><div class="line">        for(var w in this.adj[v])&#123;</div><div class="line">            if(!this.marked[this.adj[v][w]])&#123;</div><div class="line">                this.edgeTo[this.adj[v][w]] = v;</div><div class="line">                this.marked[this.adj[v][w]] = true;</div><div class="line">                queue.push(this.adj[v][w]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//基于广度优先搜索，到某个点的最短路径，边没有权值</div><div class="line">function pathTo(v)&#123;</div><div class="line">    var source = 0;</div><div class="line">    if(!this.hasPathTo(v))&#123;</div><div class="line">        return undefined;</div><div class="line">    &#125;</div><div class="line">    var path = [];</div><div class="line">    for(var i=v; i!=source; i=this.edgeTo[i])&#123;</div><div class="line">        path.push(i);</div><div class="line">    &#125;</div><div class="line">    path.push(source);</div><div class="line">    return path;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function hasPathTo(v)&#123;</div><div class="line">    return this.marked[v];</div><div class="line">&#125;</div><div class="line"></div><div class="line">g = new Graph(5);</div><div class="line">g.addEdge(0,1);</div><div class="line">g.addEdge(0,2);</div><div class="line">g.addEdge(1,3);</div><div class="line">g.addEdge(2,4);</div><div class="line">g.showGraph();</div><div class="line">// g.dfs(0);</div><div class="line">g.bfs(0);</div><div class="line">var vertex = 2;</div><div class="line">var paths = g.pathTo(vertex);</div><div class="line">while(paths.length &gt; 0)&#123;</div><div class="line">    if(paths.length &gt; 1)&#123;</div><div class="line">        console.log(paths.pop() + &apos;-&apos;);</div><div class="line">    &#125;else&#123;</div><div class="line">        console.log(paths.pop());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/30/谁能活下来——链表实践/" rel="next" title="谁能活下来——链表实践">
+                <i class="fa fa-chevron-left"></i> 谁能活下来——链表实践
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/27/查找第k大（小）元素/" rel="prev" title="查找第k大（小）元素">
+                查找第k大（小）元素 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/lswl.jpg"
+               alt="lxqin" />
+          <p class="site-author-name" itemprop="name">lxqin</p>
+          <p class="site-description motion-element" itemprop="description">记录我的生活~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概念"><span class="nav-number">1.</span> <span class="nav-text">一、概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、算法分析"><span class="nav-number">2.</span> <span class="nav-text">二、算法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、算法实现"><span class="nav-number">3.</span> <span class="nav-text">三、算法实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lxqin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

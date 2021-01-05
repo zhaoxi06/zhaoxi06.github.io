@@ -1,0 +1,621 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="angular," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="angular提供了数据绑定的功能，即将组件类的数据和页面的DOM元素关联起来。当数据发生变化时，angular能够监测到这些变化，并对其所绑定的DOM元素进行相应的更新，反之亦然。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular变化检测">
+<meta property="og:url" content="http://yoursite.com/2020/03/29/angular变化监测/index.html">
+<meta property="og:site_name" content="朝夕的博客">
+<meta property="og:description" content="angular提供了数据绑定的功能，即将组件类的数据和页面的DOM元素关联起来。当数据发生变化时，angular能够监测到这些变化，并对其所绑定的DOM元素进行相应的更新，反之亦然。">
+<meta property="og:updated_time" content="2020-04-01T12:43:12.666Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angular变化检测">
+<meta name="twitter:description" content="angular提供了数据绑定的功能，即将组件类的数据和页面的DOM元素关联起来。当数据发生变化时，angular能够监测到这些变化，并对其所绑定的DOM元素进行相应的更新，反之亦然。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/29/angular变化监测/"/>
+
+
+  <title> angular变化检测 | 朝夕的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">朝夕的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一万年太久，只争朝夕。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                angular变化检测
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-29T21:24:02+08:00" content="2020-03-29">
+              2020-03-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>angular提供了数据绑定的功能，即将组件类的数据和页面的DOM元素关联起来。当数据发生变化时，angular能够监测到这些变化，并对其所绑定的DOM元素进行相应的更新，反之亦然。</p>
+<a id="more"></a>
+<h2 id="angular变化监测的过程："><a href="#angular变化监测的过程：" class="headerlink" title="angular变化监测的过程："></a>angular变化监测的过程：</h2><p>数据发生变化———&gt;NgZone监听异步事件的执行———&gt;触发angular变化检测———&gt;变化监测的响应处理</p>
+<h2 id="数据变化的源头"><a href="#数据变化的源头" class="headerlink" title="数据变化的源头"></a>数据变化的源头</h2><p>1、用户的行为操作，如click、change、hover等<br>2、前后端的数据交互，如XMLHttpRequest、WebSocket<br>3、各类定时任务，如setTimeout、setInterval、requestAnimationFrame<br>&emsp;这三种可能导致数据变化的情景有一个共同的特征，即它们都是异步的处理。任意一个异步操作，都有可能在数据层面上发生变化，这样导致应用程序状态被改变。如果可以在每一个异步回调函数执行结束后，通知angular内核进行变化监测，那么任何数据的更改就可以在视图层实时地反馈出来。</p>
+<h2 id="变动通知机制"><a href="#变动通知机制" class="headerlink" title="变动通知机制"></a>变动通知机制</h2><p>&emsp;通过异步事件来通知angular进行变化监测，实际上angular本身并不具备这样的捕获异步事件的机制，于是，angular引入了Zone.js这个异步事件库来解决。<br>&emsp;Zone.js运行时重写所有的浏览器异步事件API（如setTimeout、XHR等），所以就可以感知到这些异步事件的执行及其上下文。一旦有异步事件发生，即可在适当的时机触发angular变化检测。<br>&emsp;Zone.js记录这些异步事件发的上下文环境是在一个名为“Zone”的对象里完成的，每个Zone对象都保存了异步事件的执行信息，以及暴露了异步事件执行的生命周期钩子。Zone.js初始化时会生成一个初始的Zone对象，称为Root Zone。Zone对象可以通过fork操作生成子Zone，异步事件都是挂靠在某个Zone（Root Zone或子Zone都可以）之下运行的，而不同的Zone之间有一定的隔离性。<br>&emsp; Zone。这意味着Angular应用中触发的所有异步事件都可被Angular Zone感知（可在异步事件执行后进行一些必要操作，如触发变化监测等），而Root Zone或其他子Zone是感知不到Angular的异步事件执行的（即不会触发变化监测）。了解这点至关重要。<br>&emsp;为了管理Root Zone和子Zone,Angular为Zone.js又封装了一层，称为NgZone。NgZone本身是一个服务，除管理各个Zone对象外，NgZone还封装了一些支持Angular运行的友好事件，当有异步任务发生，完成或者抛出异常时，都可以监听对应的事件并进行捕获处理。这些事件列举如下：</p>
+<ul>
+<li>onUnstable：当代码进入angular的执行环境时被触发，在VM（JavaScript Virtual Machine）中最先触发，即通常在异步任务执行前触发。</li>
+<li>onMicrotaskEmpty：当VM中Microtasks队列为空时被触发，用于提示angular执行变化监测。</li>
+<li>onStable：当最后一个onMicrotaskEmpty已经执行完成并且Microtasks队列为空时被触发，这个事件仅仅被触发一次，即通常在异步事件执行完成且变化监测已经执行完成时触发。</li>
+<li>onError：当有错误异常抛出时触发。<br>&emsp;在默认情况下，几乎每一次异步事件触发都会执行变化监测，有些时候这并不是开发者所需要的，如mousemove、scroll事件，如果这些事件频繁地触发变化监测，就很容易导致页面卡顿。因此，NgZone提供了run()和runOutsideAngular()两个方法帮助开发者控制变化监测是否执行。<br>&emsp;Angular应用默认运行在Angular Zone下，所以只有在Angular Zone下触发的事件才会触发变化监测，而在Root Zone下触发的事件不会触发变化监测。runOutsideAngular()方法让angular应用绑定的事件逃离Angular Zone执行，即在Root Zone下执行。需要注意的是，一旦执行了runOutsideAngular()方法，在该回调函数里后续新绑定的异步事件也会一直在Root Zone下执行，直到遇到run()方法。run()方法对runOutsideAngular()进行还原操作，将这些逃离的异步事件重新挂靠到Angular Zone下执行。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div (mousedown)=&quot;doMouseDown($event)&quot; (mouseup)=&quot;doMouseUp($event)&quot;&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">doMouseDown(event)&#123;</div><div class="line">    this.zone.runOutsideAngular(() =&gt; &#123;</div><div class="line">        window.document.addEventListener(&apos;mouseover&apos;, this.doMouseMove.bind(this));</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&emsp;在默认情况下，所有的异步事件都是在Angular Zone下执行的，每当有异步事件触发时，无论是否导致了数据变化，都会指向变化监测逻辑。<br>&emsp;变化监测的入口函数定义在ApplicationRef这个服务类里，函数名为tick()。<br>&emsp;Angular变化监测是以组件为单元的，在默认的变化监测策略里，每一次变化监测都从根组件开始，以深度优先的原则向子组件遍历，直至整棵组件树的所有组件都执行一次变化监测。有时应用不需要所有组件都执行一次变化监测，所有可以通过一些策略调整来提升变化监测的性能。</p>
+<h2 id="变化监测的响应处理"><a href="#变化监测的响应处理" class="headerlink" title="变化监测的响应处理"></a>变化监测的响应处理</h2><h3 id="变化监测的处理机制"><a href="#变化监测的处理机制" class="headerlink" title="变化监测的处理机制"></a>变化监测的处理机制</h3><p>&emsp;Angular由大大小小的组件组成，这些有相互依赖关系的组件组成了一棵线性的组件树。此外，每一个组件都有自己的变化监测器，由此组成了一棵变化监测树。变化监测树的数据是由上到下单向流动的，这是因为变化监测的执行总是由根组件开始，从上到下监测每一个组件的变化。</p>
+<h3 id="变化监测类"><a href="#变化监测类" class="headerlink" title="变化监测类"></a>变化监测类</h3><p>&emsp;Angular在整个运行期间会为每一个组件创建变化监测类的实例，该实例提供了相关的方法来手动管理变化监测。<br>变化监测类ChangeDetectorRef提供的主要接口如下：</p>
+<ul>
+<li>markForCheck()：标记根组件到该组件之间的这条路径，通知angular在下次触发变化监测时必须检查这条路径上的组件。</li>
+<li>detach()：从变化监测树中分离变化监测器，该组件的变化监测器将不再执行变化监测，除非手动执行reattach()</li>
+<li>reattach()：把分离的变化监测器重新安装上，使得该组件及其子组件都能执行变化监测。</li>
+<li>detechChanges()：手动触发执行该组件到各个子组件的一次变化监测<br>&emsp;当数据发生变化时，Angular并不知道哪个组件发生了变化，但开发者知道，所以可以给这个组件做标记，以此来通知Angular仅仅监测这个组件所在路径上的组件即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">export class ListComponent implements OnInit &#123;</div><div class="line">    contacts: any = &#123;&#125;;</div><div class="line"></div><div class="line">    constructor(</div><div class="line">        private cd: ChangeDetectorRef</div><div class="line">    )&#123;</div><div class="line">        // 从当前组件中分离变化监测器</div><div class="line">        cd.detach();</div><div class="line">        // 在需要变化监测的时候再通过detectChanges()手动触发变化监测</div><div class="line">        setInterval(() =&gt; &#123;</div><div class="line">            this.cd.detectChanges();</div><div class="line">        &#125;, 5000);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ngOnInit()&#123;</div><div class="line">        this.getContacts();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    getContacts()&#123;</div><div class="line">        this.contacts = data;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="变化监测策略"><a href="#变化监测策略" class="headerlink" title="变化监测策略"></a>变化监测策略</h3><p>&emsp;@Component装饰器中的元，数据changeDetection，它的作用是让开发者定义每个组件的变化监测策略。这个元数据的值是一个枚举，是ChangeDetectionStrategy对象的Default和OnPush。当值为Default时，组件的每次变化监测都会检查其内部的所有数据（引用对象也会被深度遍历），以此得到前后的数据变化情况；而当值为OnPush时，组件的变化监测只检查输入属性（即@Input修饰的变量）的值是否发生变化，当这个值为引用类型时，则只对比该值的引用。<br>&emsp;显然，OnPush策略相比Default降低了变化监测的复杂度，很好地提升了变化监测的性能。如果子组件的更新只依赖输入属性的值，那么在子组件上使用OnPush策略是一个很好的选择。但是OnPush只对比值的引用，如果这个值是引用类型时，可能会达不到预期效果。如果希望子组件能正常更新数据，解决办法有两个：</p>
+<ul>
+<li>修改变化监测策略为Default，但这样会降低性能。</li>
+<li>使用Immutable对象来传值，这是比较推荐的做法。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angular/" rel="tag">#angular</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/17/js原型与instanceof原理/" rel="next" title="JS原型链与instanceof底层原理">
+                <i class="fa fa-chevron-left"></i> JS原型链与instanceof底层原理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/07/防止Core模块被重复导入/" rel="prev" title="防止Core模块被重复导入">
+                防止Core模块被重复导入 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/lswl.jpg"
+               alt="lxqin" />
+          <p class="site-author-name" itemprop="name">lxqin</p>
+          <p class="site-description motion-element" itemprop="description">记录我的生活~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#angular变化监测的过程："><span class="nav-number">1.</span> <span class="nav-text">angular变化监测的过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据变化的源头"><span class="nav-number">2.</span> <span class="nav-text">数据变化的源头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变动通知机制"><span class="nav-number">3.</span> <span class="nav-text">变动通知机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变化监测的响应处理"><span class="nav-number">4.</span> <span class="nav-text">变化监测的响应处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变化监测的处理机制"><span class="nav-number">4.1.</span> <span class="nav-text">变化监测的处理机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变化监测类"><span class="nav-number">4.2.</span> <span class="nav-text">变化监测类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变化监测策略"><span class="nav-number">4.3.</span> <span class="nav-text">变化监测策略</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lxqin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
