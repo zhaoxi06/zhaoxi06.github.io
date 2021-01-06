@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/11/26/hexo博客迁移到另一台电脑/index.html">
 <meta property="og:site_name" content="朝夕的博客">
 <meta property="og:description" content="之前的电脑太卡了，换了新电脑，需要把博客迁移到新电脑，记录下操作步骤。">
-<meta property="og:updated_time" content="2020-11-26T13:59:15.293Z">
+<meta property="og:updated_time" content="2021-01-06T13:07:04.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客迁移到另一台电脑">
 <meta name="twitter:description" content="之前的电脑太卡了，换了新电脑，需要把博客迁移到新电脑，记录下操作步骤。">
@@ -304,6 +304,9 @@
 <h3 id="5、github添加-SSH-KEYS"><a href="#5、github添加-SSH-KEYS" class="headerlink" title="5、github添加 SSH KEYS"></a>5、github添加 SSH KEYS</h3><p>首先本地创建 SSH KEYS<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;xxx@qq.com&quot;     // 自己github的注册邮箱</div></pre></td></tr></table></figure></p>
 <p>之后一路回车就行<br>成功的话会在 ~/下生成 .ssh文件夹，进去，打开 id_rsa.pub，复制里面的key即可。然后拷贝到 Github 的 SSH Keys(这里要添加一个新的)<br>然后在终端中，我们再次测试下公钥有没有添加成功：ssh -T git@github.com<br>会弹出确认命令，输入yes,会弹出你的名字等等，这就代表成功了</p>
 <p>转载自<a href="https://blog.csdn.net/wqssh21/article/details/105105705" target="_blank" rel="external">如何在另一台电脑上继续hexo写博客</a></p>
+<p>2021.1.6更新</p>
+<p>为防止电脑坏了找不到源文件，在name.github.io仓库中新建hexo分支，把源文件保存到该分支中，方面后面使用。</p>
+<p>这次迁移出现了一个问题，本地预览<code>hexo s</code>正常，部署<code>hexo d</code>后页面空白。经查找，是node的版本有问题，<code>hexo g</code>生成的文件是0kb，<code>/public/index.html</code>里面没有任何内容，将node版本替换为稳定版即可。<br><a href="https://blog.tcs-y.com/2020/04/26/hexo-index-0kb/" target="_blank" rel="external">解决hexo generate 生成的时候index.html为0kb空白的问题</a></p>
 
       
     </div>
@@ -407,7 +410,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-count">65</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
