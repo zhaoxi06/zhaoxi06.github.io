@@ -84,15 +84,20 @@
 
 
 
-<meta name="description" content="记录我的生活~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="朝夕的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/06/index.html">
+<meta name="description" content="路由参数变了，页面内容没变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用路由参数时组件复用的问题">
+<meta property="og:url" content="http://yoursite.com/2021/01/08/使用路由参数时组件复用的问题/index.html">
 <meta property="og:site_name" content="朝夕的博客">
-<meta property="og:description" content="记录我的生活~">
+<meta property="og:description" content="路由参数变了，页面内容没变">
+<meta property="og:image" content="http://yoursite.com/images/vue/1.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/2.png">
+<meta property="og:image" content="http://yoursite.com/images/vue/3.png">
+<meta property="og:updated_time" content="2021-01-08T12:10:48.728Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="朝夕的博客">
-<meta name="twitter:description" content="记录我的生活~">
+<meta name="twitter:title" content="使用路由参数时组件复用的问题">
+<meta name="twitter:description" content="路由参数变了，页面内容没变">
+<meta name="twitter:image" content="http://yoursite.com/images/vue/1.png">
 
 
 
@@ -113,10 +118,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/06/"/>
+  <link rel="canonical" href="http://yoursite.com/2021/01/08/使用路由参数时组件复用的问题/"/>
 
 
-  <title> 归档 | 朝夕的博客 </title>
+  <title> 使用路由参数时组件复用的问题 | 朝夕的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +142,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -233,65 +238,143 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      好! 目前共计 66 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用路由参数时组件复用的问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2021-01-08T19:56:56+08:00" content="2021-01-08">
+              2021-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>路由参数变了，页面内容没变</p>
+<a id="more"></a>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>vue项目使用多页签模式，会员列表中点击A会员的名字，打开新页签，查看A会员的详细信息，切换回会员列表标签，点击B会员的名字，打开一个新页签，展示的仍然是A会员的详细信息。我希望点击不同的会员名字，打开不同的页签，显示对应会员名字的详细信息。但页面只有路由参数的变化，页面内容没有改变。</p>
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>通过查找官网发现，在使用路由参数时，组件实例会被复用。<br><img src="/images/vue/1.png"></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="1、用watch监测-route的变化"><a href="#1、用watch监测-route的变化" class="headerlink" title="1、用watch监测$route的变化"></a>1、用watch监测$route的变化</h3><p><img src="/images/vue/2.png"></p>
+<h3 id="2、用路由守卫"><a href="#2、用路由守卫" class="headerlink" title="2、用路由守卫"></a>2、用路由守卫</h3><p><img src="/images/vue/3.png"></p>
+<h3 id="3、给加key属性"><a href="#3、给加key属性" class="headerlink" title="3、给加key属性"></a>3、给<router-view>加key属性</router-view></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-view :key=&quot;fullPath&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>key的值设置为路由的完整路径，这样就能做到不复用。我现在用的就是第三种。</p>
+<p>突然意识到，原来key还能这样用！！！长知识了…</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/06/解决github-io无法访问的问题/" rel="next" title="解决github.io无法访问的问题">
+                <i class="fa fa-chevron-left"></i> 解决github.io无法访问的问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
         </div>
       
-      
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/30/JS——数组中的方法/" itemprop="url">
-              
-                <span itemprop="name">JS——数组中的方法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-30T18:16:20+08:00"
-              content="2017-06-30" >
-          06-30
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -299,6 +382,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -318,8 +405,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/lswl.jpg"
@@ -369,6 +465,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题背景"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题原因"><span class="nav-number">2.</span> <span class="nav-text">问题原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">3.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、用watch监测-route的变化"><span class="nav-number">3.1.</span> <span class="nav-text">1、用watch监测$route的变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、用路由守卫"><span class="nav-number">3.2.</span> <span class="nav-text">2、用路由守卫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、给加key属性"><span class="nav-number">3.3.</span> <span class="nav-text">3、给加key属性</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -472,11 +579,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   
