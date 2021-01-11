@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="问题描述给定N个物品和一个背包，物品i的重量是Wi，其价值为Vi，背包的容量为。应该如何选择装入背包的物品，使得装入背包的物品的总价值为最大？">
+<meta name="description" content="最近在做的项目有上传图片的需求，那就来一个吧。谁知，事情进展并不顺利，formdData上传文件入参为空，接口报500错误。一顿搜索，终于找到了问题所在，在此记录一下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态规划解0 1背包问题">
-<meta property="og:url" content="http://yoursite.com/2017/04/20/动态规划解0-1背包问题/index.html">
+<meta property="og:title" content="vue+axios+formData上传文件入参为空，接口请求500">
+<meta property="og:url" content="http://yoursite.com/2021/01/11/vue-axios-formData上传文件入参为空，接口请求500/index.html">
 <meta property="og:site_name" content="朝夕的博客">
-<meta property="og:description" content="问题描述给定N个物品和一个背包，物品i的重量是Wi，其价值为Vi，背包的容量为。应该如何选择装入背包的物品，使得装入背包的物品的总价值为最大？">
-<meta property="og:updated_time" content="2017-04-20T11:52:27.741Z">
+<meta property="og:description" content="最近在做的项目有上传图片的需求，那就来一个吧。谁知，事情进展并不顺利，formdData上传文件入参为空，接口报500错误。一顿搜索，终于找到了问题所在，在此记录一下。">
+<meta property="og:updated_time" content="2021-01-11T13:47:47.262Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态规划解0 1背包问题">
-<meta name="twitter:description" content="问题描述给定N个物品和一个背包，物品i的重量是Wi，其价值为Vi，背包的容量为。应该如何选择装入背包的物品，使得装入背包的物品的总价值为最大？">
+<meta name="twitter:title" content="vue+axios+formData上传文件入参为空，接口请求500">
+<meta name="twitter:description" content="最近在做的项目有上传图片的需求，那就来一个吧。谁知，事情进展并不顺利，formdData上传文件入参为空，接口报500错误。一顿搜索，终于找到了问题所在，在此记录一下。">
 
 
 
@@ -114,10 +114,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/20/动态规划解0-1背包问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2021/01/11/vue-axios-formData上传文件入参为空，接口请求500/"/>
 
 
-  <title> 动态规划解0 1背包问题 | 朝夕的博客 </title>
+  <title> vue+axios+formData上传文件入参为空，接口请求500 | 朝夕的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
             
             
               
-                动态规划解0 1背包问题
+                vue+axios+formData上传文件入参为空，接口请求500
               
             
           </h1>
@@ -267,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-20T19:35:13+08:00" content="2017-04-20">
-              2017-04-20
+            <time itemprop="dateCreated" datetime="2021-01-11T21:41:22+08:00" content="2021-01-11">
+              2021-01-11
             </time>
           </span>
 
@@ -281,8 +281,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c</span>
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
                   </a>
                 </span>
 
@@ -314,73 +314,13 @@
       
 
       
-        <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>给定N个物品和一个背包，物品i的重量是Wi，其价值为Vi，背包的容量为。应该如何选择装入背包的物品，使得装入背包的物品的总价值为最大？</p>
+        <p>最近在做的项目有上传图片的需求，那就来一个吧。谁知，事情进展并不顺利，formdData上传文件入参为空，接口报500错误。一顿搜索，终于找到了问题所在，在此记录一下。</p>
 <a id="more"></a>
-<h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p>令V(i,j)表示在前i(1&lt;=i&lt;=n)个物品中能够装入容量为就j(1&lt;=j&lt;=C)的背包中的物品的最大价值，则可以得到如下的动态规划函数:<br>(1)   V(i,0)=V(0,j)=0<br>(2)   V(i,j)=V(i-1,j)  j<wi v(i,j)="max{V(i-1,j)" ,v(i-1,j-wi)+vi)="" }="" j="">wi<br>(1)式表明：如果第i个物品的重量大于背包的容量，则装人前i个物品得到的最大价值和装入前i-1个物品得到的最大价是相同的，即物品i不能装入背包；第(2)个式子表明:如果第i个物品的重量小于背包的容量，则会有一下两种情况：(a)如果把第i个物品装入背包，则背包物品的价值等于第i-1个物品装入容量位j-wi 的背包中的价值加上第i个物品的价值vi; (b)如果第i个物品没有装入背包，则背包中物品价值就等于把前i-1个物品装入容量为j的背包中所取得的价值。显然，取二者中价值最大的作为把前i个物品装入容量为j的背包中的最优解。</wi></p>
-<pre><code>#include&lt;stdio.h&gt;
-int V[200][200];//前i个物品装入容量为j的背包中获得的最大价值
-int max(int a,int b)
-{
-   if(a&gt;=b)
-       return a;
-   else return b;
-}
-int KnapSack(int n,int w[],int v[],int x[],int C)
-{    
-    //V(i,j)表示在前i(1&lt;=i&lt;=n)个物品中能够装入容量为就j(1&lt;=j&lt;=C)的背包中的物品的最大价值
-    int i,j;
-    for(i=0;i&lt;=n;i++)
-        V[i][0]=0;
-    for(j=0;j&lt;=C;j++)
-        V[0][j]=0;
-    for(i=0;i&lt;=n-1;i++)
-        for(j=0;j&lt;=C;j++)
-            if(j&lt;w[i])            //当前货物的质量大于背包的容量
-                V[i][j]=V[i-1][j];
-            else                //当前货物的质量小于背包的容量，则判断当前货物的能否放入已经装有货物的背包
-                V[i][j]=max(V[i-1][j],V[i-1][j-w[i]]+v[i]);
-            j=C;
-            for(i=n-1;i&gt;=0;i--){
-                if(V[i][j]&gt;V[i-1][j]){
-                    x[i]=1;        //选中记为1
-                    j=j-w[i];
-                }else
-                    x[i]=0;
-            }
-            printf(&quot;选中的物品是:\n&quot;);
-            for(i=0;i&lt;n;i++)
-                printf(&quot;%d &quot;,x[i]);
-            printf(&quot;\n&quot;);
-        return V[n-1][C];
-}
-void main()
-{
-    int s;            //获得的最大价值
-    int w[15];        //物品的重量
-    int v[15];        //物品的价值
-    int x[15];        //物品的选取状态
-    int n,i;
-    int C;            //背包最大容量
-    n=5;
-    printf(&quot;请输入背包的最大容量:\n&quot;);
-    scanf(&quot;%d&quot;,&amp;C);
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>由于业务需要，axios配置了拦截器，在里面做了数据处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">request.interceptors.request.use(config =&gt; &#123;</div><div class="line">  // 在发送请求前做数据处理</div><div class="line">  return config</div><div class="line">&#125;, （error） =&gt; &#123;</div><div class="line">// 错误处理</div><div class="line">return  Promise.reject(error);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>重新创建一个纯净的axios请求。formData是个不一样的对象，需要纯净的axios请求。formData成功的请求头<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Cont-Type: </div><div class="line">multipart/form-data; boundary=----WebKitFormBoundaryKlju0v1YzjLJ1CnC</div></pre></td></tr></table></figure></p>
+<h2 id="业务代码"><a href="#业务代码" class="headerlink" title="业务代码"></a>业务代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import axios from &apos;axios&apos;</div><div class="line"></div><div class="line">handleOk() &#123;</div><div class="line">this.$refs.cropper.getCropData(data =&gt;&#123;</div><div class="line">let formData = new FormData()</div><div class="line">        formData.append(&apos;image&apos;, data)</div><div class="line">        let _this = this;</div><div class="line">        axios(&#123;</div><div class="line">          method: &apos;POST&apos;,</div><div class="line">          url: `xxx`,</div><div class="line">          headers: &#123; ..._this.headers &#125;,</div><div class="line">          data: formData</div><div class="line">        &#125;).then(...)</div><div class="line">&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>原博客：<a href="https://blog.csdn.net/qq_41688165/article/details/80834842" target="_blank" rel="external">萌新用vue + axios + formdata 上传文件的爬坑之路</a></p>
 
-    printf(&quot;输入物品数:\n&quot;);
-    scanf(&quot;%d&quot;,&amp;n);
-    printf(&quot;请分别输入物品的重量:\n&quot;);
-    for(i=0;i&lt;n;i++)
-        scanf(&quot;%d&quot;,&amp;w[i]);
-
-    printf(&quot;请分别输入物品的价值:\n&quot;);
-    for(i=0;i&lt;n;i++)
-        scanf(&quot;%d&quot;,&amp;v[i]);
-
-    s=KnapSack(n,w,v,x,C);
-
-    printf(&quot;最大物品价值为:\n&quot;);
-    printf(&quot;%d\n&quot;,s);
-}
-</code></pre>
       
     </div>
 
@@ -405,16 +345,16 @@ void main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/19/电脑重装系统后，hexo的快速配置/" rel="next" title="电脑重装系统后，hexo的快速配置">
-                <i class="fa fa-chevron-left"></i> 电脑重装系统后，hexo的快速配置
+              <a href="/2021/01/08/使用路由参数时组件复用的问题/" rel="next" title="使用路由参数时组件复用的问题">
+                <i class="fa fa-chevron-left"></i> 使用路由参数时组件复用的问题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/20/分支限界法解单源最短路径问题/" rel="prev" title="分支限界法解单源最短路径问题">
-                分支限界法解单源最短路径问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/01/11/vue中的字符串模板和dom模板/" rel="prev" title="vue中的字符串模板和dom模板">
+                vue中的字符串模板和dom模板 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -529,7 +469,7 @@ void main()
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题分析"><span class="nav-number">2.</span> <span class="nav-text">问题分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务代码"><span class="nav-number">3.</span> <span class="nav-text">业务代码</span></a></li></ol></div>
             
           </div>
         </section>
