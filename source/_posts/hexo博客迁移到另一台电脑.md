@@ -44,3 +44,10 @@ $ ssh-keygen -t rsa -C "xxx@qq.com"     // 自己github的注册邮箱
 会弹出确认命令，输入yes,会弹出你的名字等等，这就代表成功了
 
 转载自[如何在另一台电脑上继续hexo写博客](https://blog.csdn.net/wqssh21/article/details/105105705)
+
+2021.1.6更新
+
+为防止电脑坏了找不到源文件，在name.github.io仓库中新建hexo分支，把源文件保存到该分支中，方面后面使用。
+
+这次迁移出现了一个问题，本地预览`hexo s`正常，部署`hexo d`后页面空白。经查找，是node的版本有问题，`hexo g`生成的文件是0kb，`/public/index.html`里面没有任何内容，将node版本替换为稳定版即可。
+[解决hexo generate 生成的时候index.html为0kb空白的问题](https://blog.tcs-y.com/2020/04/26/hexo-index-0kb/)

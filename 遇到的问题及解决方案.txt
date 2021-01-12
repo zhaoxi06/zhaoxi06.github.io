@@ -1,0 +1,6 @@
+1、hexo next主题deploy到github后不显示内容只显示框架这个问题该怎么解决？
+答：参考https://www.zhihu.com/question/52251404
+
+
+2、next主题帮助文档
+答：http://theme-next.iissnan.com/
