@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="for…in for…of别再傻傻分不清楚">
+<meta name="description" content="keep-alive关闭页签后缓存组件未销毁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="for...in for...of">
-<meta property="og:url" content="http://yoursite.com/2019/08/23/for...in  for...of/index.html">
+<meta property="og:title" content="vue页签模式，使用keep-alive关闭页签后缓存组件未销毁">
+<meta property="og:url" content="http://yoursite.com/2021/01/20/vue页签模式，使用keep-alive关闭页签后缓存组件未销毁/index.html">
 <meta property="og:site_name" content="朝夕的博客">
-<meta property="og:description" content="for…in for…of别再傻傻分不清楚">
-<meta property="og:updated_time" content="2019-08-25T09:49:20.756Z">
+<meta property="og:description" content="keep-alive关闭页签后缓存组件未销毁">
+<meta property="og:updated_time" content="2021-01-20T12:19:34.786Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="for...in for...of">
-<meta name="twitter:description" content="for…in for…of别再傻傻分不清楚">
+<meta name="twitter:title" content="vue页签模式，使用keep-alive关闭页签后缓存组件未销毁">
+<meta name="twitter:description" content="keep-alive关闭页签后缓存组件未销毁">
 
 
 
@@ -114,10 +114,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/23/for...in  for...of/"/>
+  <link rel="canonical" href="http://yoursite.com/2021/01/20/vue页签模式，使用keep-alive关闭页签后缓存组件未销毁/"/>
 
 
-  <title> for...in for...of | 朝夕的博客 </title>
+  <title> vue页签模式，使用keep-alive关闭页签后缓存组件未销毁 | 朝夕的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
             
             
               
-                for...in for...of
+                vue页签模式，使用keep-alive关闭页签后缓存组件未销毁
               
             
           </h1>
@@ -267,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-08-23T11:38:00+08:00" content="2019-08-23">
-              2019-08-23
+            <time itemprop="dateCreated" datetime="2021-01-20T20:16:53+08:00" content="2021-01-20">
+              2021-01-20
             </time>
           </span>
 
@@ -281,8 +281,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
                   </a>
                 </span>
 
@@ -314,12 +314,26 @@
       
 
       
-        <p>for…in for…of别再傻傻分不清楚</p>
+        <p>keep-alive关闭页签后缓存组件未销毁</p>
 <a id="more"></a>
-<h3 id="先来看几个例子"><a href="#先来看几个例子" class="headerlink" title="先来看几个例子"></a>先来看几个例子</h3><h4 id="1、遍历对象"><a href="#1、遍历对象" class="headerlink" title="1、遍历对象"></a>1、遍历对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var obj = &#123; a: 1, b: 2, c: 3&#125;;</div><div class="line">for (let i in obj)&#123;</div><div class="line">	console.log(i); //a b c</div><div class="line">    console.log(typeof i);  string</div><div class="line">&#125;</div><div class="line"></div><div class="line">for ( let i of obj)&#123;</div><div class="line">	console.log(i); //TypeError: obj is not iterable</div><div class="line">&#125;</div><div class="line"></div><div class="line">for ( let i of Object.keys(obj))&#123;</div><div class="line">	console.log(i); // a b c</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2、遍历数组"><a href="#2、遍历数组" class="headerlink" title="2、遍历数组"></a>2、遍历数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Object.prototype.objCustom = function() &#123;&#125;; </div><div class="line">Array.prototype.arrCustom = function() &#123;&#125;;</div><div class="line">var arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</div><div class="line">arr.name = &apos;JS&apos;;</div><div class="line">for( let i in arr)&#123;</div><div class="line">	console.log(i); // 0 1 2 name arrCustom objCustom</div><div class="line">&#125;</div><div class="line"></div><div class="line">for( let i of arr)&#123;</div><div class="line">	console.log(i); // a b c</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h4><p>1、遍历数组的所有的<strong>可枚举属性</strong>，包括原型上的，及手动添加的属性。<br>2、遍历的顺序有可能不是按照实际数组的内部顺序<br>3、index索引为字符串<br>4、更适合遍历对象</p>
-<h4 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h4><p>1、遍历键值<br>2、一个数据结构只要部属了Symbol.iterator属性，就被视为具有iterator接口，就可以使用for…of进行遍历。<br>3、可以与break、continue和return配合使用<br>4、普通对象不具有iterator接口，如果要用for…of遍历普通对象，可以使用Object.keys()<br>5、有iterator接口的数据结构包括：Array、Map、Set、String、arguments、NodeList对象</p>
+<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>vue项目中使用页签模式，同时使用keep-alive缓存页签，关闭页签后重新打开，缓存内容仍然存在。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>使用keep-alive的include属性，属性值为当前打开的页签。即只缓存当前打开的页签。<br>页签store<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">import storage from &apos;store&apos;</div><div class="line">import &#123; ALL_TABS &#125; from &apos;@/store/mutation-types&apos;</div><div class="line"></div><div class="line">const multiTab = &#123;</div><div class="line">  state: &#123;</div><div class="line">    allTabs: []</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  mutations: &#123;</div><div class="line">    [ALL_TABS]: (state, tabs) =&gt; &#123;</div><div class="line">      state.allTabs = tabs</div><div class="line">      storage.set(ALL_TABS, tabs)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">export default multiTab</div></pre></td></tr></table></figure></p>
+<p>页签组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.$watch(&apos;pagesName&apos;, () =&gt; &#123;</div><div class="line">      this.$store.commit(ALL_TABS, this.pagesName)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>路由组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const &#123; $store: &#123; state &#125; &#125; = this</div><div class="line">const &#123; multiTab: &#123; allTabs &#125; &#125; = state</div><div class="line">&lt;keep-alive :include=&quot;allTabs&quot;&gt;</div><div class="line">   &lt;router-view key=&quot;fullPath&quot; /&gt;</div><div class="line">&lt;/keep-alive&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="关联知识点"><a href="#关联知识点" class="headerlink" title="关联知识点"></a>关联知识点</h2><h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a><code>keep-alive</code></h3><ul>
+<li><code>include</code>：- 字符串或正则表达式。只有名称匹配的组件会被缓存。</li>
+<li><code>exclude</code>： - 字符串或正则表达式。任何名称匹配的组件都不会被缓存。</li>
+<li><code>max</code>： - 数字。最多可以缓存多少组件实例。</li>
+</ul>
+<p><code>inculde</code>、<code>exclude</code>匹配组件的写法有三种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 逗号分隔字符串 --&gt;</div><div class="line">&lt;keep-alive include=&quot;a,b&quot;&gt;</div><div class="line">  &lt;component :is=&quot;view&quot;&gt;&lt;/component&gt;</div><div class="line">&lt;/keep-alive&gt;</div><div class="line"></div><div class="line">&lt;!-- 正则表达式 (使用 `v-bind`) --&gt;</div><div class="line">&lt;keep-alive :include=&quot;/a|b/&quot;&gt;</div><div class="line">  &lt;component :is=&quot;view&quot;&gt;&lt;/component&gt;</div><div class="line">&lt;/keep-alive&gt;</div><div class="line"></div><div class="line">&lt;!-- 数组 (使用 `v-bind`) --&gt;</div><div class="line">&lt;keep-alive :include=&quot;[&apos;a&apos;, &apos;b&apos;]&quot;&gt;</div><div class="line">  &lt;component :is=&quot;view&quot;&gt;&lt;/component&gt;</div><div class="line">&lt;/keep-alive&gt;</div></pre></td></tr></table></figure></p>
+<p><code>inculde</code>、<code>exclude</code>值“a、b”指的是当前这个路由对应组件的name属性值</p>
+<h3 id="vuex-store"><a href="#vuex-store" class="headerlink" title="vuex store"></a>vuex store</h3><ul>
+<li>state： 数据源，相当于组件中的data</li>
+<li>getters：store的计算属性，相当于组件中的computed</li>
+<li>mutations：更改 Vuex 的 store 中的状态的唯一方法是提交（commit） mutation。处理的都是同步事务</li>
+<li>actions：处理异步操作。通过dispatch方法来触发</li>
+<li>modules：vuex允许将 store 分割成模块（module）。每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块</li>
+</ul>
 
       
     </div>
@@ -345,17 +359,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/23/数组深复制的方式/" rel="next" title="数组深复制的方式">
-                <i class="fa fa-chevron-left"></i> 数组深复制的方式
+              <a href="/2021/01/15/No-Access-Control-Allow-Origin-header-is-present-on-the-requested-resource/" rel="next" title="No Access-Control-Allow-Origin header is present on the requested resource.">
+                <i class="fa fa-chevron-left"></i> No Access-Control-Allow-Origin header is present on the requested resource.
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/29/栈实现中缀表达式转后缀表达式/" rel="prev" title="栈实现中缀表达式转后缀表达式">
-                栈实现中缀表达式转后缀表达式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -469,7 +479,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#先来看几个例子"><span class="nav-number">1.</span> <span class="nav-text">先来看几个例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、遍历对象"><span class="nav-number">1.1.</span> <span class="nav-text">1、遍历对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、遍历数组"><span class="nav-number">1.2.</span> <span class="nav-text">2、遍历数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for…in"><span class="nav-number">2.1.</span> <span class="nav-text">for…in</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for…of"><span class="nav-number">2.2.</span> <span class="nav-text">for…of</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题背景"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联知识点"><span class="nav-number">3.</span> <span class="nav-text">关联知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keep-alive"><span class="nav-number">3.1.</span> <span class="nav-text">keep-alive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vuex-store"><span class="nav-number">3.2.</span> <span class="nav-text">vuex store</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
