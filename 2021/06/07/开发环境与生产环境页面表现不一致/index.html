@@ -1,0 +1,628 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="遇到一个奇怪的问题，开发环境下好好地，生产环境报错，部分内容不显示了？甚至，开发环境下，按钮不见了，生产环境却没任何问题？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发环境与生产环境页面表现不一致">
+<meta property="og:url" content="http://yoursite.com/2021/06/07/开发环境与生产环境页面表现不一致/index.html">
+<meta property="og:site_name" content="朝夕的博客">
+<meta property="og:description" content="遇到一个奇怪的问题，开发环境下好好地，生产环境报错，部分内容不显示了？甚至，开发环境下，按钮不见了，生产环境却没任何问题？">
+<meta property="og:image" content="http://yoursite.com/images/vue/6.jpg">
+<meta property="og:image" content="http://yoursite.com/images/vue/7.jpg">
+<meta property="og:updated_time" content="2021-06-08T14:32:05.232Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开发环境与生产环境页面表现不一致">
+<meta name="twitter:description" content="遇到一个奇怪的问题，开发环境下好好地，生产环境报错，部分内容不显示了？甚至，开发环境下，按钮不见了，生产环境却没任何问题？">
+<meta name="twitter:image" content="http://yoursite.com/images/vue/6.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/06/07/开发环境与生产环境页面表现不一致/"/>
+
+
+  <title> 开发环境与生产环境页面表现不一致 | 朝夕的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">朝夕的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一万年太久，只争朝夕。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                开发环境与生产环境页面表现不一致
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2021-06-07T22:16:29+08:00" content="2021-06-07">
+              2021-06-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>遇到一个奇怪的问题，开发环境下好好地，生产环境报错，部分内容不显示了？甚至，开发环境下，按钮不见了，生产环境却没任何问题？<br><a id="more"></a></p>
+<p>最近，公司把代码管理改在云效，从新地址克隆下项目执行<code>npm install</code>报错 <code>npm ERR! cb() never called!</code>。万能的百度告诉我，只需执行两步即可解决：</p>
+<ul>
+<li><p>清除npm缓存</p>
+<p>  <code>npm cache clean -f</code></p>
+</li>
+<li>删除项目种的package-lock.json文件和node_modules之后，再执行<code>npm install</code></li>
+</ul>
+<p>我抓住救命稻草一般跟着执行，并没用！！！而且我本地也没有package-lock.json文件，因为这个文件没有提交到代码仓库。</p>
+<p>最后发现是公司网太差，等网好些了执行npm install就没问题。这个问题就此解决。</p>
+<p>刚刚说到，package-lock.json没有提交到代码仓库进行管理，这也为后面开发环境生产环境页面表现不一致埋下了伏笔……</p>
+<p>事情是这样的：</p>
+<p>在一个页面中公用table组件（ant design vue的table），通过切换不同的类型，相应变更列，进而展示不同的表单。多个页面都有“操作”列，类型不同，操作列中的操作按钮不同。于是，我在页面中这么写：</p>
+<p><img src="/images/vue/6.jpg"></p>
+<p>在一个叫action的slot中，通过if判断，显示不同的按钮。<br>本来这个页面好好的，突然有一天发现，<em>开发环境下</em>，只有activeTabKey的值为member时，操作列会有按钮，为其他值时，操作列空空如也~ <em>生产环境下</em>，不同类型下按钮正常展示。<br>经过测试发现，当slot里面没用使用v-if，即操作列固定展示某些内容时，页面展示没问题；当使用v-if时，只有第一个v-if匹配时内容会展示，之后的内容通通没用，跟没写一样；第一个v-if不变，后面改为v-else-if，如下图：</p>
+<p><img src="/images/vue/7.jpg"></p>
+<p>按钮能正常展示了。</p>
+<p>对比修改代码管理地址前后的package-lock.json文件，发现部分依赖包的版本有变化，猜测应该是依赖包的版本变化导致。</p>
+<p>思考：</p>
+<p>如果是依赖包版本变化导致，那我需要依赖包的版本固定，保证其他人在npm install时大家的依赖能一致。那就需要把package-lock.json提交到仓库进行管理。但是，回到我一开始说的问题，执行npm install时报错 <code>npm ERR! cb() never called!</code>，网友说要删除package-lock.json文件，这不就自相矛盾了吗？<br>我想，执行npm install时报错 <code>npm ERR! cb() never called!</code>有多种原因：<br>1）可能跟我一样，是网络问题<br>2）如网友所说，要先清除npm缓存，删除package-lock.json文件</p>
+<p>为什么要删除package-lock.json文件呢？</p>
+<p>有一种情况是，包的源换了。比如一开始使用的是yarn install生成的pakage-lock.json，此时保留package-lock.json，删除node_modules，再执行npm install就会报错。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/13/输入框获得焦点时切换为英文输入法/" rel="next" title="输入框获得焦点时切换为英文输入法">
+                <i class="fa fa-chevron-left"></i> 输入框获得焦点时切换为英文输入法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/lswl.jpg"
+               alt="lxqin" />
+          <p class="site-author-name" itemprop="name">lxqin</p>
+          <p class="site-description motion-element" itemprop="description">记录我的生活~</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lxqin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
